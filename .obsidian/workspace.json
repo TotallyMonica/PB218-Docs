@@ -1,0 +1,206 @@
+{
+  "main": {
+    "id": "cec4085a5acdb92a",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ed14664ead82600",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fe4d580aa1e2099b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Switches/Extreme/Templates/5320.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "5320"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "15d6c3e55e42c4e0",
+    "type": "split",
+    "children": [
+      {
+        "id": "88cca33db1b8568a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd6a36192f72e697",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f8351bef803f67c9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "999fbb2c598311c3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9ed6b5f35c620ec4",
+    "type": "split",
+    "children": [
+      {
+        "id": "983f83f68081b706",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5d735f2d4f2976c5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Switches/Extreme/Templates/Switch-specific/pb218-5420m-ex02.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for pb218-5420m-ex02"
+            }
+          },
+          {
+            "id": "d7afd293195709c7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Switches/Extreme/Templates/Switch-specific/pb218-5420m-ex02.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from pb218-5420m-ex02"
+            }
+          },
+          {
+            "id": "fdc2b29158990f85",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c3a380af0d07ba3a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Switches/Extreme/Templates/Switch-specific/pb218-5420m-ex02.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of pb218-5420m-ex02"
+            }
+          },
+          {
+            "id": "db56fee6b8761fcd",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "fe4d580aa1e2099b",
+  "lastOpenFiles": [
+    "Switches/Extreme/Templates/Switch-specific/rack6-5320-ex02.md",
+    "Switches/Extreme/Templates/Switch-specific/rack6-5320-ex01.md",
+    "Switches/Extreme/Templates/Switch-specific/rack4-5320-ex02.md",
+    "Switches/Extreme/Templates/Switch-specific/rack10-5420m-ex01.md",
+    "Switches/Extreme/Templates/Switch-specific/pb218-5420m-ex02.md",
+    "Switches/Extreme/Templates/Switch-specific/pb218-5420m-ex01.md",
+    "Switches/Extreme/Templates/Switch-specific/rack10-5420m-ex02.md",
+    "Switches/Extreme/Templates/Switch-specific/rack4-5320-ex01.md",
+    "Switches/Extreme/Templates/5420M.md",
+    "Switches/Extreme/Templates/5320.md",
+    "Switches/Extreme/Templates/Switch-specific",
+    "Welcome.md",
+    "Switches/Extreme/Templates",
+    "Switches/De/Untitled",
+    "Switches/Dell",
+    "Switches/Brocade",
+    "Switches/Cisco",
+    "Switches/Extreme",
+    "Servers",
+    "Switches"
+  ]
+}

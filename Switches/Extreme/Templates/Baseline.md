@@ -1,0 +1,77 @@
+```
+# Must be configured!
+configure snmp sysName "{{RACK/ROOM}}-{{Switch Model}}-ex{{01-99}}"
+configure snmp sysLocation "{{ROOM}} - {{Rack/Bench}}"
+configure snmp sysContact "{{NAME}}"
+
+# -----------------------------------
+# Optional to configure
+# -----------------------------------
+
+# Create management VLAN to be tag 100
+create vlan "Net-MGMT"
+configure vlan Net-MGMT description "Management VLAN" 
+configure vlan Net-MGMT tag 100
+
+# Create access VLAN to be tag 99
+create vlan "Access"
+configure vlan Access description "Student acccess network" 
+configure vlan Access tag 99
+
+# Create servers VLAN to be tag 98
+create vlan "Servers"
+configure vlan Servers description "Server access network" 
+configure vlan Servers tag 98
+
+# Create WAN VLAN to be tag 33
+create vlan "WAN"
+configure vlan WAN description "WAN VLAN" 
+configure vlan WAN tag 33
+
+# Create Proxmox Cluster Management VLAN to be tag 200
+create vlan "Cluster-MGMT"
+configure vlan Cluster-MGMT description "Proxmox Cluster Management VLAN" 
+configure vlan Cluster-MGMT tag 200
+
+# IP address configuration
+enable dhcp vlan Net-MGMT # DHCP
+configure Net-MGMT ipaddress 10.10.1.0/24 # Static IP - Replace 0 with IP
+
+# Default route configuration
+configure iproute add default 10.10.1.254
+
+# DNS configuration
+configure dns-client add name-server 172.16.200.188
+configure dns-client add name-server 172.16.200.73
+configure dns-client default-domain pb218.lab
+
+# Admin account: Default is admin:DPStn218!
+# If this fails, run configure account admin
+configure account admin encrypted "$5$ldChuL$JTarDUT9h/VDsUSdjpLsaS4aFnSabU.BFBOQd1LyYI6" 
+
+# SSH configuration
+# If it hasn't been enabled before, this will throw a prompt. Double check that this ran successfully
+enable ssh2
+
+# LLDP configuraton - Advertise the Net-MGMT ip address, requires IP address to be set
+enable lldp ports all
+configure lldp management-address vlan Net-MGMT primary-ip
+
+# Allow OSPF to advertise on Net-MGMT
+configure ospf vlan Net-MGMT priority 0
+
+# SNMP configuration
+# NOTE: if there's existing configurations, likely this will prompt for verification
+configure snmp add community readonly public
+enable snmp access
+enable snmp access snmp-v1v2c
+enable snmp access snmpv3
+
+# STP configuration
+configure stpd s0 add vlan Net-MGMT ports all
+configure stpd s0 add vlan Servers ports all
+configure stpd s0 add vlan WAN ports all
+configure stpd s0 add vlan Access ports all
+configure stpd s0 add vlan Cluster-MGMT ports all
+
+```

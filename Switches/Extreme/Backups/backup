@@ -15,6 +15,6 @@ for ip in {1..10}; do
 		sshpass -e scp -o HostKeyAlgorithms=+ssh-rsa admin@"10.10.1.$ip":"$filename.xsf" .
 		switch_name=$(grep -hoE "(pb218|rack[0-9]{1,2})-(5320|5420m)-ex0[1-9]" "$filename.xsf")
 		mv "$filename".xsf "$switch_name.xsf"
-		mv "primary.cfg" "$switch_name.xsf"
+		mv "primary.cfg" "$switch_name.cfg"
 	fi
 done

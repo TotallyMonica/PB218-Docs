@@ -49,6 +49,9 @@ configure dns-client default-domain pb218.lab
 # If this fails, run configure account admin
 configure account admin encrypted "$5$ldChuL$JTarDUT9h/VDsUSdjpLsaS4aFnSabU.BFBOQd1LyYI6" 
 
+# EDP configuration
+enable edp ports all
+
 # SSH configuration
 # If it hasn't been enabled before, this will throw a prompt. Double check that this ran successfully
 enable ssh2

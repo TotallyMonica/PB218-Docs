@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $SSHPASS == "" ]]; then
+	cat "Error: environment variable SSHPASS not set!" 0>&2
+	exit
+fi
+
+for ip in 152 228 229 235 18 22 36 39 42; do
+	ping -c1 -W5 "172.16.200.$ip"
+	if [[ $? == 0 ]]; then
+		basename="proxmox-172.16.200.$ip"
+		mkdir $basename
+		mkdir $basename/etc
+		mkdir $basename/etc/network
+		mkdir $basename/pve
+		sshpass -e scp -o HostKeyAlgorithms=+ssh-rsa root@"172.16.200.$ip":"/etc/hosts" "$basename/etc"
+                sshpass -e scp -o HostKeyAlgorithms=+ssh-rsa root@"172.16.200.$ip":"/etc/resolv.conf" "$basename/etc"
+                sshpass -e scp -o HostKeyAlgorithms=+ssh-rsa root@"172.16.200.$ip":"/etc/network/interfaces" "$basename/etc/network"
+                sshpass -e scp -o HostKeyAlgorithms=+ssh-rsa root@"172.16.200.$ip":"/etc/pve/corosync" "$basename/etc/pve"
+	fi
+done

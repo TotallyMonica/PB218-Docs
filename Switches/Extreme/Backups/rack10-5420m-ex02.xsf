@@ -5,6 +5,7 @@ configure snmp sysName "rack10-5420m-ex02"
 configure snmp sysLocation "PB218 - Rack 10"
 configure snmp sysContact "Monica Hanson"
 configure sys-recovery-level switch reset
+configure power monitor poll-interval 60 change-action trap change-threshold 10
 
 
 #
@@ -31,62 +32,6 @@ configure vlan Servers tag 98
 create vlan "WAN"
 configure vlan WAN description "WAN VLAN" 
 configure vlan WAN tag 33
-disable snmp traps port-up-down port 1
-disable snmp traps port-up-down port 2
-disable snmp traps port-up-down port 3
-disable snmp traps port-up-down port 4
-disable snmp traps port-up-down port 5
-disable snmp traps port-up-down port 6
-disable snmp traps port-up-down port 7
-disable snmp traps port-up-down port 8
-disable snmp traps port-up-down port 9
-disable snmp traps port-up-down port 10
-disable snmp traps port-up-down port 11
-disable snmp traps port-up-down port 12
-disable snmp traps port-up-down port 13
-disable snmp traps port-up-down port 14
-disable snmp traps port-up-down port 15
-disable snmp traps port-up-down port 16
-disable snmp traps port-up-down port 17
-disable snmp traps port-up-down port 18
-disable snmp traps port-up-down port 19
-disable snmp traps port-up-down port 20
-disable snmp traps port-up-down port 21
-disable snmp traps port-up-down port 22
-disable snmp traps port-up-down port 23
-disable snmp traps port-up-down port 24
-disable snmp traps port-up-down port 25
-disable snmp traps port-up-down port 26
-disable snmp traps port-up-down port 27
-disable snmp traps port-up-down port 28
-disable snmp traps port-up-down port 29
-disable snmp traps port-up-down port 30
-disable snmp traps port-up-down port 31
-disable snmp traps port-up-down port 32
-disable snmp traps port-up-down port 33
-disable snmp traps port-up-down port 34
-disable snmp traps port-up-down port 35
-disable snmp traps port-up-down port 36
-disable snmp traps port-up-down port 37
-disable snmp traps port-up-down port 38
-disable snmp traps port-up-down port 39
-disable snmp traps port-up-down port 40
-disable snmp traps port-up-down port 41
-disable snmp traps port-up-down port 42
-disable snmp traps port-up-down port 43
-disable snmp traps port-up-down port 44
-disable snmp traps port-up-down port 45
-disable snmp traps port-up-down port 46
-disable snmp traps port-up-down port 47
-disable snmp traps port-up-down port 48
-disable snmp traps port-up-down port 49
-disable snmp traps port-up-down port 50
-disable snmp traps port-up-down port 51
-disable snmp traps port-up-down port 52
-disable snmp traps port-up-down port 53
-disable snmp traps port-up-down port 54
-disable snmp traps port-up-down port 55
-disable snmp traps port-up-down port 56
 configure vlan Access add ports 49-56 tagged  
 configure vlan Access add ports 1-32 untagged  
 configure vlan Cluster-MGMT add ports 1-32,49-56 tagged  
@@ -321,6 +266,8 @@ configure lldp management-address vlan Net-MGMT primary-ip
 #
 configure dns-client add name-server 172.16.200.188 vr VR-Default
 configure dns-client add name-server 172.16.200.73 vr VR-Default
+configure dns-client add name-server 1.1.1.1 vr VR-Default
+configure dns-client add name-server 1.0.0.1 vr VR-Default
 configure dns-client add domain-suffix pb218.lab 
 configure sntp-client primary 0.aerohive.pool.ntp.org vr VR-Default
 enable sntp-client

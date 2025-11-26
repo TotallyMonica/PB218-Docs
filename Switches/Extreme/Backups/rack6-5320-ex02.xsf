@@ -28,41 +28,9 @@ configure vlan Servers tag 98
 create vlan "WAN"
 configure vlan WAN description "WAN VLAN" 
 configure vlan WAN tag 33
-disable snmp traps port-up-down port 1
-disable snmp traps port-up-down port 2
-disable snmp traps port-up-down port 3
-disable snmp traps port-up-down port 4
-disable snmp traps port-up-down port 5
-disable snmp traps port-up-down port 6
-disable snmp traps port-up-down port 7
-disable snmp traps port-up-down port 8
-disable snmp traps port-up-down port 9
-disable snmp traps port-up-down port 10
-disable snmp traps port-up-down port 11
-disable snmp traps port-up-down port 12
-disable snmp traps port-up-down port 13
-disable snmp traps port-up-down port 14
-disable snmp traps port-up-down port 15
-disable snmp traps port-up-down port 16
-disable snmp traps port-up-down port 17
-disable snmp traps port-up-down port 18
-disable snmp traps port-up-down port 19
-disable snmp traps port-up-down port 20
-disable snmp traps port-up-down port 21
-disable snmp traps port-up-down port 22
-disable snmp traps port-up-down port 23
-disable snmp traps port-up-down port 24
-disable snmp traps port-up-down port 25
-disable snmp traps port-up-down port 26
-disable snmp traps port-up-down port 27
-disable snmp traps port-up-down port 28
-disable snmp traps port-up-down port 29
 configure ports 29 auto off speed 10000 duplex full 
-disable snmp traps port-up-down port 30
 configure ports 30 auto off speed 10000 duplex full 
-disable snmp traps port-up-down port 31
 configure ports 31 auto off speed 10000 duplex full 
-disable snmp traps port-up-down port 32
 configure ports 32 auto off speed 10000 duplex full 
 configure vlan Access add ports 25-32 tagged  
 configure vlan Access add ports 1-24 untagged  
@@ -72,6 +40,7 @@ configure vlan Net-MGMT add ports 25-32 untagged
 configure vlan Servers add ports 1-32 tagged  
 configure vlan WAN add ports 1-32 tagged  
 configure vlan Net-MGMT ipaddress 10.10.1.2 255.255.255.0
+configure vr VR-Default delete protocol mpls
 
 
 #
@@ -251,6 +220,11 @@ configure iqagent server vr VR-Default
 
 
 #
+# Module isis configuration.
+#
+
+
+#
 # Module lldp configuration.
 #
 
@@ -280,6 +254,8 @@ configure iqagent server vr VR-Default
 #
 configure dns-client add name-server 172.16.200.188 vr VR-Default
 configure dns-client add name-server 172.16.200.73 vr VR-Default
+configure dns-client add name-server 1.1.1.1 vr VR-Default
+configure dns-client add name-server 1.0.0.1 vr VR-Default
 configure dns-client add domain-suffix pb218.lab 
 configure sntp-client primary 0.aerohive.pool.ntp.org vr VR-Default
 configure sntp-client broadcast vr VR-Default

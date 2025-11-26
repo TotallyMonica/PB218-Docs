@@ -1,7 +1,7 @@
 #
 # Module devmgr configuration.
 #
-configure snmp sysName "pb218-5420m-ex01"
+configure snmp sysName "pb218-5420m-ex02"
 configure snmp sysLocation "PB218 - Rack"
 configure snmp sysContact "Monica Hanson"
 configure sys-recovery-level switch reset
@@ -17,6 +17,12 @@ configure vr VR-Default add ports 1-56
 create vlan "Access"
 configure vlan Access description "Student acccess network" 
 configure vlan Access tag 99
+create vlan "Cluster-MGMT"
+configure vlan Cluster-MGMT description "Proxmox Cluster Management Network" 
+configure vlan Cluster-MGMT tag 200
+create vlan "Firewall-HA"
+configure vlan Firewall-HA description "Firewall HA VLAN" 
+configure vlan Firewall-HA tag 97
 create vlan "Net-MGMT"
 configure vlan Net-MGMT description "Management VLAN" 
 configure vlan Net-MGMT tag 100
@@ -26,11 +32,15 @@ configure vlan Servers tag 98
 create vlan "WAN"
 configure vlan WAN description "WAN VLAN" 
 configure vlan WAN tag 33
+configure vlan Access add ports 49-56 tagged  
 configure vlan Access add ports 1-48 untagged  
+configure vlan Cluster-MGMT add ports 1-32,49-56 tagged  
+configure vlan Firewall-HA add ports 20,23-28,31-32,49-56 tagged  
 configure vlan Net-MGMT add ports 1-48 tagged  
 configure vlan Net-MGMT add ports 49-56 untagged  
 configure vlan Servers add ports 1-56 tagged  
-configure vlan Net-MGMT ipaddress 10.10.1.5 255.255.255.0
+configure vlan WAN add ports 20,23-28,31-32,49-56 tagged  
+configure vlan Net-MGMT ipaddress 10.10.1.8 255.255.255.0
 configure vr VR-Default delete protocol mpls
 
 
@@ -110,7 +120,6 @@ configure access-list zone SYSTEM application Flowmon application-priority 24
 #
 # Module cfgmgr configuration.
 #
-save configuration automatic every 2 primary
 
 
 #
@@ -251,6 +260,7 @@ configure dns-client add name-server 1.0.0.1 vr VR-Default
 configure dns-client add domain-suffix pb218.lab 
 configure sntp-client primary 0.aerohive.pool.ntp.org vr VR-Default
 enable sntp-client
+enable dhcp vlan Access
 enable dhcp vlan Default
 
 
@@ -303,8 +313,9 @@ enable dhcp vlan Default
 # Module snmpMaster configuration.
 #
 configure snmpv3 engine-id 03:dc:23:3b:00:5c:00
+configure snmpv3 add group "admin" user "snmpmgmt" sec-model usm 
+configure snmpv3 add community "basic_ro" encrypted name "#$f5zMtmoNxL5SQiGaBGHpGcvhEhimWg==" user "v1v2c_ro" 
 configure snmpv3 add community "basic_rw" encrypted name "#$YBdH+DLtrvJObrmS6PmLLYjwI4i0Iw==" user "v1v2c_rw" 
-configure snmpv3 add community "public" name "public" user "v1v2c_ro" 
 enable snmp access
 enable snmp access snmp-v1v2c
 enable snmp access snmpv3
@@ -313,9 +324,12 @@ enable snmp access snmpv3
 #
 # Module stp configuration.
 #
-configure stpd s0 add vlan Access ports 1-48 dot1d
+configure stpd s0 add vlan Access ports 1-56 dot1d
+configure stpd s0 add vlan Cluster-MGMT ports 1-32,49-56 dot1d
+configure stpd s0 add vlan Firewall-HA ports 20,23-28,31-32,49-56 dot1d
 configure stpd s0 add vlan Net-MGMT ports 1-56 dot1d
 configure stpd s0 add vlan Servers ports 1-56 dot1d
+configure stpd s0 add vlan WAN ports 20,23-28,31-32,49-56 dot1d
 
 
 #

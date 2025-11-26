@@ -99,10 +99,7 @@ configure vlan WAN add ports 33-48 untagged
 configure vlan Access ipaddress 172.16.200.23 255.255.255.0
 configure vlan Cluster-MGMT ipaddress 192.168.103.10 255.255.255.0
 configure vlan Net-MGMT ipaddress 10.10.1.6 255.255.255.0
-<<<<<<< HEAD
 configure vlan WAN ipaddress 150.199.140.35 255.255.255.224
-=======
->>>>>>> refs/remotes/origin/master
 configure vr VR-Default delete protocol mpls
 
 

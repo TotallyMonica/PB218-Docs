@@ -253,6 +253,8 @@ configure iqagent server vr VR-Default
 #
 configure dns-client add name-server 172.16.200.73 vr VR-Default
 configure dns-client add name-server 172.16.200.188 vr VR-Default
+configure dns-client add name-server 1.1.1.1 vr VR-Default
+configure dns-client add name-server 1.0.0.1 vr VR-Default
 configure dns-client add domain-suffix pb218.lab 
 configure sntp-client primary 0.aerohive.pool.ntp.org vr VR-Default
 configure sntp-client broadcast vr VR-Default

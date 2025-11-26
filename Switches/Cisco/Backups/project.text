@@ -1,0 +1,182 @@
+
+!
+! Last configuration change at 02:01:15 UTC Thu Sep 4 2025
+! NVRAM config last updated at 15:12:47 UTC Mon Sep 1 2025 by mhanson
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname project
+!
+boot-start-marker
+boot-end-marker
+!
+enable password ABcd1234
+!
+username admin password 0 ABcd1234
+username mhanson privilege 15 secret 5 $1$GNPJ$XXxol3JaFfOTkd/tXhl5M/
+no aaa new-model
+system mtu routing 1500
+ip routing
+ip name-server 192.168.102.53
+ip dhcp excluded-address 192.168.109.1 192.168.109.99
+ip dhcp excluded-address 192.168.109.201 192.168.109.254
+!
+!
+ip dhcp snooping vlan 1,10
+ip dhcp snooping
+!
+!
+crypto pki trustpoint TP-self-signed-126364800
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-126364800
+ revocation-check none
+ rsakeypair TP-self-signed-126364800
+!
+!
+crypto pki certificate chain TP-self-signed-126364800
+ certificate self-signed 01
+  3082023E 308201A7 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31323633 36343830 30301E17 0D393330 33303130 30303130 
+  305A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3132 36333634 
+  38303030 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  BC3913AA 55C61133 9DAF9336 6C0C8BB7 BED693AF 2F96C32F 5B2E041C 35E3B863 
+  3A9E0BA6 CC2643B9 9780027F 894532BD 130F3BD3 82FFE46C C6FC8ECE BF398202 
+  AD772150 8085C065 C4147879 02D5F02E B4EFFAC8 B6002C80 8F02CADC 582019A4 
+  4BD9C917 E754912F D159409A DC24F3FE 14F7ADCF 597AE4DD D0F9EA13 42AFF9D5 
+  02030100 01A36830 66300F06 03551D13 0101FF04 05300301 01FF3013 0603551D 
+  11040C30 0A820870 726F6A65 63742E30 1F060355 1D230418 30168014 F5221AC1 
+  3C442C35 6F5C04CC 47E1ED94 E70C62FF 301D0603 551D0E04 160414F5 221AC13C 
+  442C356F 5C04CC47 E1ED94E7 0C62FF30 0D06092A 864886F7 0D010104 05000381 
+  8100B8EE A26E8597 0C3BC457 C4D9E774 516260C7 E3889102 643325DF D8FBE02B 
+  79D22A51 AC558CD5 8A63DE29 99E5E629 16AB180F 6C5370EA C985F5C1 7AB6AD36 
+  58B7C171 2C209139 3E92F277 CF2D14B2 7F12C40D 0F5FCE39 9A69E9A0 82C6AB05 
+  D940B1A8 DA23212B E6964C06 962E36AA 0D5D2F62 80F302C0 2F34532B 797B6ED4 E8AA
+  	quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+lldp run
+!
+ip ssh pubkey-chain
+  username mhanson
+   key-hash ssh-rsa B52E31B319579747F79BBC57F712E190
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode access
+ switchport nonegotiate
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface Vlan1
+ no ip dhcp client request router
+ ip address dhcp
+!
+interface Vlan10
+ ip address 192.168.109.1 255.255.255.0
+ ip helper-address 172.16.200.248
+!
+router ospf 10
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip http server
+ip http secure-server
+!
+!
+snmp-server community public RO
+snmp-server location "PB218a - Stage Switch"
+snmp-server contact mrhanson1s@semo.edu
+!
+vstack
+banner motd Get away from my project
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+ntp server 132.163.96.3
+ntp server 23.155.40.38
+end

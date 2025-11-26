@@ -1,0 +1,132 @@
+
+!
+! Last configuration change at 16:55:51 UTC Sun Aug 24 2025 by admin
+! NVRAM config last updated at 16:20:57 UTC Sun Aug 24 2025 by admin
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname PB218-Lab-Downlink
+!
+boot-start-marker
+boot-end-marker
+!
+enable password ABcd1234
+!
+username admin secret 5 $1$7GlI$eyp5f2FvEBa00jK/XO75S/
+no aaa new-model
+system mtu routing 1500
+!
+!
+!
+!
+!
+!
+ip dhcp snooping vlan 1
+ip dhcp snooping information option allow-untrusted
+ip dhcp snooping information option unicast
+no ip dhcp snooping information option
+ip domain-name pb218.lab
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-230399360
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-230399360
+ revocation-check none
+ rsakeypair TP-self-signed-230399360
+!
+!
+crypto pki certificate chain TP-self-signed-230399360
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/1
+ switchport trunk allowed vlan 1,10
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ switchport trunk allowed vlan 1,10
+ switchport mode trunk
+!
+interface GigabitEthernet0/3
+!
+interface GigabitEthernet0/4
+!
+interface GigabitEthernet0/5
+!
+interface GigabitEthernet0/6
+!
+interface GigabitEthernet0/7
+!
+interface GigabitEthernet0/8
+!
+interface GigabitEthernet0/9
+!
+interface GigabitEthernet0/10
+!
+interface GigabitEthernet0/11
+!
+interface GigabitEthernet0/12
+!
+interface Vlan1
+ ip address dhcp
+ ip access-group 100 in
+ ip access-group 100 out
+!
+interface Vlan10
+ ip address dhcp
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+!
+!
+access-list 100 permit udp any any eq bootpc log
+access-list 100 permit udp any any eq bootps log
+access-list 100 permit ip any any
+!
+!
+snmp-server community public RO
+snmp-server location "PB218 - Lab Downlink"
+snmp-server contact mrhanson1s@semo.edu
+snmp mib flash cache
+!
+line con 0
+line vty 0 4
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ logging synchronous
+ login local
+ transport input ssh
+!
+ntp server pool.ntp.org
+ntp server 34.202.215.187
+!
+end

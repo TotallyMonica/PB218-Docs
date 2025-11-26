@@ -1,0 +1,127 @@
+# Notes
+- Backed up via `scp -O -oHostKeyAlgorithms=+ssh-rsa superadmin@iot-switch.pb218.lab:config.text iot-switch.text`
+- Prerequisite configurations required:
+	- Level 15 privileged user (in this case superadmin)
+	- `IOT-SWITCH(config)#ip scp server enable`
+	- `IOT-SWITCH(config)#aaa new-model`
+	- `IOT-SWITCH(config)#aaa authentication login default local`
+	- `IOT-SWITCH(config)#aaa authorization exec default local`
+	- `IOT-SWITCH(config)#ip ssh version 2`
+# To-Do
+- Automate saving
+# Configuration
+```
+!  
+version 12.2  
+no service pad  
+service timestamps debug datetime msec  
+service timestamps log datetime msec  
+no service password-encryption  
+!  
+hostname IOT-SWITCH  
+!  
+boot-start-marker  
+boot-end-marker  
+!  
+enable secret 5 $1$fvbg$Fd9nkQlZ.yFnviNjMN8aw/  
+!  
+username superadmin privilege 15 secret 5 $1$K6IA$tfsj5Nfhr/K8WyViGYS6z1  
+username admin secret 5 $1$AQ1O$CRzk0tddRWOXnqtjPZZoy1  
+!  
+!  
+aaa new-model  
+!  
+!  
+aaa authentication login default local  
+aaa authorization exec default local    
+!  
+!  
+!  
+aaa session-id common  
+system mtu routing 1500  
+!  
+!  
+ip domain-name pb218.lab  
+!  
+!  
+crypto pki trustpoint TP-self-signed-80721664  
+enrollment selfsigned  
+subject-name cn=IOS-Self-Signed-Certificate-80721664  
+revocation-check none  
+rsakeypair TP-self-signed-80721664  
+!  
+!  
+crypto pki certificate chain TP-self-signed-80721664  
+certificate self-signed 01 nvram:IOS-Self-Sig#3434.cer  
+!  
+!  
+!  
+spanning-tree mode pvst  
+spanning-tree extend system-id  
+!  
+vlan internal allocation policy ascending  
+lldp run  
+!  
+ip ssh version 2  
+ip scp server enable  
+!  
+!  
+interface FastEthernet0/1  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/2  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/3  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/4  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/5  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/6  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/7  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface FastEthernet0/8  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface GigabitEthernet0/1  
+switchport mode access  
+spanning-tree portfast  
+!  
+interface Vlan1  
+ip address dhcp  
+ip access-group RESTRICTED-IOT in  
+!  
+ip http server  
+ip http secure-server  
+!  
+ip access-list extended RESTRICTED-IOT  
+permit ip 172.16.200.0 0.0.0.255 host 172.16.3.2 log-input  
+permit ip 10.10.0.0 0.0.1.255 host 172.16.3.2 log-input  
+permit ip 192.168.2.0 0.0.0.255 host 172.16.3.2 log-input  
+deny   ip 172.16.3.0 0.0.0.255 host 172.16.3.2 log-input  
+permit ip any any log-input  
+snmp-server community public RO  
+snmp-server community private RW  
+snmp-server location "PB210 - Rack 10"  
+snmp-server contact "Monica Hanson <mrhanson1s@semo.edu>"  
+!  
+line con 0  
+line vty 5 15  
+!  
+end
+```

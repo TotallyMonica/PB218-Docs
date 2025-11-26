@@ -22,7 +22,7 @@ for ip in 152 228 229 235 18 22 36 39 42; do
 
 		scp "/etc/hosts" "$basename/etc"
 		scp "/etc/network/interfaces" "$basename/network/"
-		scp "/etc/resolv.conf" "$basename/"
+		scp "/etc/resolv.conf" "$basename/etc/"
 		scp -r "/etc/pve/qemu-server"* "$basename/etc/"
 		scp -r "/etc/pve/lxc"* "$basename/etc/"
 

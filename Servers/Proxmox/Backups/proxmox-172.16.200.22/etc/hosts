@@ -1,0 +1,19 @@
+127.0.0.1 localhost.localdomain localhost
+192.168.103.1 PVE-Node01.local PVE-Node01
+192.168.103.2 PVE-Node02.local PVE-Node02
+192.168.103.3 PVE-Node03.local PVE-Node03
+# 192.168.103.4 rack10-r720-pve01.local rack10-r720-pve01
+192.168.103.5 rack10-r640-pve02.local rack10-r640-pve02
+192.168.103.6 rack10-r640-pve03.local rack10-r640-pve03
+192.168.103.7 rack10-r720-pve04.local rack10-r720-pve04
+192.168.103.8 rack10-r720-pve05.local rack10-r720-pve05
+192.168.103.9 rack10-r720-pve06.local rack10-r720-pve06
+
+# The following lines are desirable for IPv6 capable hosts
+
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts

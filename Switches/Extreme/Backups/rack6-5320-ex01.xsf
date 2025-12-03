@@ -19,6 +19,9 @@ configure vlan Access tag 99
 create vlan "Cluster-MGMT"
 configure vlan Cluster-MGMT description "Proxmox Cluster Management Network" 
 configure vlan Cluster-MGMT tag 200
+create vlan "Firewall-HA"
+configure vlan Firewall-HA description "Firewall HA VLAN" 
+configure vlan Firewall-HA tag 97
 create vlan "Net-MGMT"
 configure vlan Net-MGMT description "Management VLAN" 
 configure vlan Net-MGMT tag 100
@@ -35,6 +38,7 @@ configure ports 32 auto off speed 10000 duplex full
 configure vlan Access add ports 25-32 tagged  
 configure vlan Access add ports 1-24 untagged  
 configure vlan Cluster-MGMT add ports 1-32 tagged  
+configure vlan Firewall-HA add ports 1-32 tagged  
 configure vlan Net-MGMT add ports 1-24 tagged  
 configure vlan Net-MGMT add ports 25-32 untagged  
 configure vlan Servers add ports 1-32 tagged  
@@ -318,6 +322,8 @@ enable snmp access snmpv3
 # Module stp configuration.
 #
 configure stpd s0 add vlan Access ports 1-32 dot1d
+configure stpd s0 add vlan Cluster-MGMT ports 1-32 dot1d
+configure stpd s0 add vlan Firewall-HA ports 1-32 dot1d
 configure stpd s0 add vlan Net-MGMT ports 1-32 dot1d
 configure stpd s0 add vlan Servers ports 1-32 dot1d
 configure stpd s0 add vlan WAN ports 1-32 dot1d

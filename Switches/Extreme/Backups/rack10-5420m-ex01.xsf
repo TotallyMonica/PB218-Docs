@@ -42,6 +42,7 @@ configure vlan Servers add ports 1-32,49-56 tagged
 configure vlan WAN add ports 20,23-28,31-32,49-56 tagged  
 configure vlan WAN add ports 33-48 untagged  
 configure vlan Net-MGMT ipaddress 10.10.1.7 255.255.255.0
+configure vr VR-Default delete protocol mpls
 
 
 #
@@ -219,6 +220,11 @@ configure iqagent server vr VR-Default
 
 
 #
+# Module isis configuration.
+#
+
+
+#
 # Module lldp configuration.
 #
 
@@ -291,6 +297,11 @@ configure ospf vlan Net-MGMT priority 0
 
 
 #
+# Module ptpV2 configuration.
+#
+
+
+#
 # Module rip configuration.
 #
 
@@ -304,10 +315,10 @@ configure ospf vlan Net-MGMT priority 0
 # Module snmpMaster configuration.
 #
 configure snmpv3 engine-id 03:dc:23:3b:00:5c:00
-configure snmpv3 add user "snmpmgmt" engine-id 80:00:07:7c:03:dc:23:3b:00:5c:00 authentication md5 auth-encrypted localized-key 23:24:70:6f:34:65:2b:58:65:4c:33:50:6f:34:35:42:37:38:70:6e:6b:46:39:35:33:46:56:69:36:44:76:33:70:4c:79:61:68:64:65:36:66:7a:30:32:6b:61:44:69:62:36:57:64:34:3d privacy aes 128 privacy-encrypted localized-key 23:24:79:4c:42:59:76:6e:6b:53:67:48:48:4f:54:6e:67:76:79:61:76:6c:69:6e:79:6a:6a:44:49:48:30:33:66:43:65:61:62:71:7a:51:7a:52:73:46:65:59:61:70:33:59:51:70:49:3d 
+configure snmpv3 add user "snmpmgmt" engine-id 80:00:07:7c:03:dc:23:3b:00:5c:00 authentication md5 privacy aes 128 
 configure snmpv3 add group "admin" user "snmpmgmt" sec-model usm 
-configure snmpv3 add community "basic_rw" encrypted name "#$YBdH+DLtrvJObrmS6PmLLYjwI4i0Iw==" user "v1v2c_rw" 
 configure snmpv3 add community "basic_ro" encrypted name "#$f5zMtmoNxL5SQiGaBGHpGcvhEhimWg==" user "v1v2c_ro" 
+configure snmpv3 add community "basic_rw" encrypted name "#$YBdH+DLtrvJObrmS6PmLLYjwI4i0Iw==" user "v1v2c_rw" 
 enable snmp access
 enable snmp access snmp-v1v2c
 enable snmp access snmpv3
@@ -342,10 +353,16 @@ configure stpd s0 add vlan WAN ports 20,23-28,31-56 dot1d
 #
 # Module thttpd configuration.
 #
+enable web https
 
 
 #
 # Module twamp configuration.
+#
+
+
+#
+# Module upm configuration.
 #
 
 

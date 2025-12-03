@@ -38,7 +38,7 @@ configure ports 32 auto off speed 10000 duplex full
 configure vlan Access add ports 25-32 tagged  
 configure vlan Access add ports 1,3-24 untagged  
 configure vlan Cluster-MGMT add ports 1-32 tagged  
-configure vlan Firewall-HA add ports 25-32 tagged  
+configure vlan Firewall-HA add ports 1-32 tagged  
 configure vlan Net-MGMT add ports 1-24 tagged  
 configure vlan Net-MGMT add ports 25-32 untagged  
 configure vlan Servers add ports 1-32 tagged  
@@ -324,7 +324,7 @@ enable snmp access snmpv3
 #
 configure stpd s0 add vlan Access ports 1,3-32 dot1d
 configure stpd s0 add vlan Cluster-MGMT ports 1-32 dot1d
-configure stpd s0 add vlan Firewall-HA ports 25-32 dot1d
+configure stpd s0 add vlan Firewall-HA ports 1-32 dot1d
 configure stpd s0 add vlan Net-MGMT ports 1-32 dot1d
 configure stpd s0 add vlan Servers ports 1-32 dot1d
 configure stpd s0 add vlan WAN ports 1-32 dot1d
